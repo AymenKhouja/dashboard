@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KPI Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Include Plotly.js library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <h1>Labelling Dashboard</h1>
+    <div class="info-message">
+        <p>Welcome to the KPI Dashboard! Select a KPI from the dropdown below to visualize.</p>
+    </div>
+    <form id="kpi-form">
+        <label for="categorie">Select Categorie:</label>
+        <select id="categorie" name="categorie">
+            {% for categorie, items in categories.items() %}
+                <option value="{{ items.index }}" title="{{ items.description }}">{{ items.display_name }}</option>
+            {% endfor %}
+        </select>
+        <label for="experience">Select experience level:</label>
+        <select id="experience" name="experience">
+            {% for experience, items in experiences.items() %}
+                <option value="{{ items.index}}" title="{{ items.description }}">{{ items.display_name }}</option>
+            {% endfor %}
+        </select>
+        <p class="hover-info">Hover over a categorie to see its description.</p>
+        
+    </form>
+    <div id="job-content"></div>
+    <div id="cv-content"></div>
+
+    <div id="yes-no-buttons">
+        <button id="yes-button" class="yes-button">yes</button>
+        <button id="no-button" class="no-button">no</button>
+    </div>
+
+    <div id="match-buttons"> Does this cv Match?
+        <button id="match-yes-button" class="yes-button">yes</button>
+        <button id="match-no-button" class="no-button">no</button>
+    </div>
+    <div id="stars">
+        <label for="experience">How many stars:</label>
+            <select id="stars_selection" name="stars_selection">
+                <option value="1" title="1 star">1</option>
+                <option value="2" title="2 star">2</option>
+                <option value="3" title="3 star">3</option>
+                <option value="4" title="4 star">4</option>
+                <option value="5" title="5 star">5</option>
+            </select>
+            
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+
+</html>
